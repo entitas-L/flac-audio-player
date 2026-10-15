@@ -16,8 +16,11 @@ import java.util.Locale
 class PlaybackService : MediaSessionService() {
 
     private var mediaSession: MediaSession? = null
+
     companion object {
-        var latestAudioSpecs: String = "FLAC LOSSLESS • 96.0 kHz • 24-bit"
+        // Empty string → ViewModel keeps the badge from MetadataExtractor until ExoPlayer decodes
+        @Volatile
+        var latestAudioSpecs: String = ""
     }
 
     @OptIn(UnstableApi::class)
@@ -30,7 +33,7 @@ class PlaybackService : MediaSessionService() {
                     .setUsage(C.USAGE_MEDIA)
                     .setContentType(C.AUDIO_CONTENT_TYPE_MUSIC)
                     .build(),
-                true
+                /* handleAudioFocus = */ true
             )
             .setHandleAudioBecomingNoisy(true)
             .build()
@@ -42,22 +45,22 @@ class PlaybackService : MediaSessionService() {
 
             override fun onPlaybackStateChanged(playbackState: Int) {
                 if (playbackState == Player.STATE_READY) {
-                    updateFlacSpecs(player)
+                    updateAudioSpecs(player)
                 }
             }
 
             override fun onTracksChanged(tracks: Tracks) {
-                updateFlacSpecs(player)
+                updateAudioSpecs(player)
             }
         })
 
+        // Attach EQ to the session created at ExoPlayer init (if already available)
         if (player.audioSessionId != C.AUDIO_SESSION_ID_UNSET) {
             EqualizerHelper.attachSession(player.audioSessionId)
         }
 
         val sessionActivityIntent = PendingIntent.getActivity(
-            this,
-            0,
+            this, 0,
             Intent(this, MainActivity::class.java),
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
@@ -68,16 +71,25 @@ class PlaybackService : MediaSessionService() {
     }
 
     @OptIn(UnstableApi::class)
-    private fun updateFlacSpecs(player: ExoPlayer) {
+    private fun updateAudioSpecs(player: ExoPlayer) {
         val format = player.audioFormat ?: return
         val khz = String.format(Locale.US, "%.1f", format.sampleRate / 1000f)
-        val mime = format.sampleMimeType?.substringAfter("/")?.uppercase() ?: "FLAC"
-        latestAudioSpecs = "$mime LOSSLESS • $khz kHz • ${format.channelCount} CH"
+
+        // Decode PCM encoding to human-readable bit depth using standard Android AudioFormat values:
+        // ENCODING_PCM_16BIT = 2, ENCODING_PCM_24BIT_PACKED = 21, ENCODING_PCM_32BIT = 22, ENCODING_PCM_FLOAT = 4
+        val bitDepth = when (format.pcmEncoding) {
+            C.ENCODING_PCM_16BIT -> "16-bit"
+            21 -> "24-bit"
+            22, C.ENCODING_PCM_32BIT -> "32-bit"
+            4 -> "32-bit Float"
+            else -> "Lossless"
+        }
+        val ch = if (format.channelCount > 1) "Stereo" else "Mono"
+
+        latestAudioSpecs = "FLAC • $khz kHz • $bitDepth • $ch"
     }
 
-    override fun onGetSession(controllerInfo: MediaSession.ControllerInfo): MediaSession? {
-        return mediaSession
-    }
+    override fun onGetSession(controllerInfo: MediaSession.ControllerInfo): MediaSession? = mediaSession
 
     override fun onTaskRemoved(rootIntent: Intent?) {
         val player = mediaSession?.player

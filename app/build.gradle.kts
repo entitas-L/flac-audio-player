@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     id("org.jetbrains.kotlin.plugin.compose")
@@ -17,6 +20,32 @@ android {
 
     buildFeatures {
         compose = true
+    }
+
+    signingConfigs {
+        create("release") {
+            val keystorePropertiesFile = rootProject.file("release.properties")
+            if (keystorePropertiesFile.exists()) {
+                val properties = Properties()
+                FileInputStream(keystorePropertiesFile).use { properties.load(it) }
+                storeFile = rootProject.file(properties.getProperty("storeFile"))
+                storePassword = properties.getProperty("storePassword")
+                keyAlias = properties.getProperty("keyAlias")
+                keyPassword = properties.getProperty("keyPassword")
+            } else {
+                initWith(getByName("debug"))
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("release")
+        }
+        debug {
+            signingConfig = signingConfigs.getByName("debug")
+        }
     }
 
     compileOptions {
