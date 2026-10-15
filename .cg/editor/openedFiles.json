@@ -1,0 +1,66 @@
+{
+  "allFiles": [
+    {
+      "file": "/storage/emulated/0/CodeOnTheGoProjects/FlacAudio/gradlew",
+      "selection": {
+        "end": {
+          "column": 0,
+          "index": 0,
+          "line": 0
+        },
+        "start": {
+          "column": 0,
+          "index": 0,
+          "line": 0
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/CodeOnTheGoProjects/FlacAudio/app/build.gradle.kts",
+      "selection": {
+        "end": {
+          "column": 22,
+          "index": 392,
+          "line": 18
+        },
+        "start": {
+          "column": 22,
+          "index": 392,
+          "line": 18
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/CodeOnTheGoProjects/FlacAudio/app/src/main/java/com/example/flaceqplayer/NowPlayingScreen.kt",
+      "selection": {
+        "end": {
+          "column": 0,
+          "index": 12616,
+          "line": 313
+        },
+        "start": {
+          "column": 0,
+          "index": 12616,
+          "line": 313
+        }
+      }
+    },
+    {
+      "file": "/storage/emulated/0/CodeOnTheGoProjects/FlacAudio/build.gradle.kts",
+      "selection": {
+        "end": {
+          "column": 0,
+          "index": 0,
+          "line": 0
+        },
+        "start": {
+          "column": 0,
+          "index": 0,
+          "line": 0
+        }
+      }
+    }
+  ],
+  "projectPath": "/storage/emulated/0/CodeOnTheGoProjects/FlacAudio",
+  "selectedFile": "/storage/emulated/0/CodeOnTheGoProjects/FlacAudio/app/build.gradle.kts"
+}

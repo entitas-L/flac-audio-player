@@ -1,0 +1,55 @@
+{
+  "snippets": [
+    {
+      "body": [
+        "System.out.println($1);$0"
+      ],
+      "description": "System.out.println",
+      "language": "java",
+      "prefix": "sout",
+      "scope": "local"
+    },
+    {
+      "body": [
+        "Log.i(TAG, $1);$0"
+      ],
+      "description": "Log.i with TAG",
+      "language": "java",
+      "prefix": "logi",
+      "scope": "local"
+    },
+    {
+      "body": [
+        "try {",
+        "\t$1",
+        "} catch (${2:Exception} e) {",
+        "\t$0",
+        "}"
+      ],
+      "description": "Try-catch block",
+      "language": "java",
+      "prefix": "trycatch",
+      "scope": "local"
+    },
+    {
+      "body": [
+        "private static volatile ${1:ClassName} instance;",
+        "",
+        "public static $1 getInstance() {",
+        "\tif (instance \u003d\u003d null) {",
+        "\t\tsynchronized ($1.class) {",
+        "\t\t\tif (instance \u003d\u003d null) {",
+        "\t\t\t\tinstance \u003d new $1();",
+        "\t\t\t}",
+        "\t\t}",
+        "\t}",
+        "\treturn instance;",
+        "}"
+      ],
+      "description": "Singleton instance pattern",
+      "language": "java",
+      "prefix": "singleton",
+      "scope": "member"
+    }
+  ]
+}
