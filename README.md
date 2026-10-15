@@ -70,6 +70,11 @@ Contributions, bug reports, and feature requests are welcome! Feel free to check
 
 ---
 
+> [!WARNING]
+> **Work in Progress (WIP)**
+> This application is currently under active development. You may encounter bugs, incomplete features, or performance issues. Feel free to test it out and report any bugs via GitHub Issues!
+
+---
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
