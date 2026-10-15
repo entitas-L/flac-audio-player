@@ -9,17 +9,17 @@ A modern, lightweight, and high-fidelity local FLAC audio player built natively 
 
 ---
 
-## ✨ Features
+## Features
 
-- 🎧 **High-Resolution FLAC Playback:** Powered by Jetpack Media3 (ExoPlayer) with full support for high sample rates and bit depths.
-- 🖼️ **Embedded Album Art Extraction:** Automatically reads and displays cover art embedded inside FLAC Vorbis Comments / metadata blocks.
-- 🎨 **Dynamic Material 3 UI:** Adaptive color scheme automatically derived from the album art palette.
-- 🎛️ **5-Band Built-in Equalizer:** Integrated `AudioFx` equalizer with manual frequency gain control and presets (Flat, Bass Boost, Rock, Pop, etc.).
-- 🌙 **Modern Dark Theme:** Minimalist and clean aesthetic focused on visual clarity and low power consumption.
+- **High-Resolution FLAC Playback:** Powered by Jetpack Media3 (ExoPlayer) with full support for high sample rates and bit depths.
+- **Embedded Album Art Extraction:** Automatically reads and displays cover art embedded inside FLAC Vorbis Comments / metadata blocks.
+- **Dynamic Material 3 UI:** Adaptive color scheme automatically derived from the album art palette.
+- **5-Band Built-in Equalizer:** Integrated `AudioFx` equalizer with manual frequency gain control and presets (Flat, Bass Boost, Rock, Pop, etc.).
+- **Modern Dark Theme:** Minimalist and clean aesthetic focused on visual clarity and low power consumption.
 
 ---
 
-## 🛠️ Tech Stack & Dependencies
+## Tech Stack & Dependencies
 
 - **Language:** [Kotlin](https://kotlinlang.org/)
 - **UI Framework:** [Jetpack Compose](https://developer.android.com/jetpack/compose) (Material Design 3)
@@ -29,7 +29,7 @@ A modern, lightweight, and high-fidelity local FLAC audio player built natively 
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Android Studio / AndroidIDE / Code On The Go
@@ -54,7 +54,7 @@ A modern, lightweight, and high-fidelity local FLAC audio player built natively 
 
 ---
 
-## 📲 Download & Installation
+## Download & Installation
 
 You can download the latest pre-release APK directly from the [GitHub Releases](../../releases) section:
 
@@ -64,12 +64,12 @@ You can download the latest pre-release APK directly from the [GitHub Releases](
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions, bug reports, and feature requests are welcome! Feel free to check the [Issues](../../issues) page.
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the [MIT License](LICENSE).
