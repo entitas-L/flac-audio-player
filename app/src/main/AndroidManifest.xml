@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- Online Lyrics (LRCLIB) & Translation -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <!-- Audio FX & Equalizer Permissions -->
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 
@@ -17,7 +20,9 @@
 
     <application
         android:allowBackup="true"
-        android:label="FLAC Hi-Res Player"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.Material.NoActionBar">
 
@@ -29,10 +34,16 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="content" android:mimeType="audio/flac" />
+                <data android:scheme="file" android:mimeType="audio/flac" />
+            </intent-filter>
         </activity>
 
         <service
-            android:name=".PlaybackService"
+            android:name=".audio.PlaybackService"
             android:exported="true"
             android:foregroundServiceType="mediaPlayback">
             <intent-filter>
